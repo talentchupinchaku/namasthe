@@ -1,3 +1,5 @@
+import random
+
 import praw
 import time
 from azure.identity import DefaultAzureCredential, ManagedIdentityCredential
@@ -7,7 +9,17 @@ from azure.keyvault.secrets import SecretClient
 bot_id = "5-hv-Mrpww0aUimZk18fbg"
 username = "nee_charithra_bot"
 user_agent = "http-client"
-
+responses = [
+    "హే... మళ్ళీ వేసేశాడు",
+    "ఆఁ సర్లే నువ్వెళ్లు",
+    "టాలెంటు చుపిస్తున్నావేంటీ",
+    "వాడొక పెద్ద సిద్ధాంతి, వీడొక పెద్ద వేదాంతి",
+    "idhi ra intensity ante, idhi ra modulation ante, idhi ra diction ante",
+    "అబ్బా సాయిరాం",
+    "ఏది, ఒక్కసారి మావయ్యా అనమ్మా",
+    "కానివ్వండ్రా, కానివ్వండి",
+    "part lu part lu gaa choosthunte idhi kuda baane undhe"
+]
 
 def init():
 
@@ -41,8 +53,5 @@ def init():
             bondha_submission.comments_sort = "top"
             comments = bondha_submission.comments.list()
             for comment in comments:
-                print("top comment is " + comment.body)
-                submission.reply(body=(comment.body + " submissionId: " + bondha_submission.id))
+                submission.reply(body=(comment.body + " submissionId: " + bondha_submission.id + " I would have replied " + random.choice(responses)))
                 break
-
-init()
