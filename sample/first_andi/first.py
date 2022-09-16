@@ -40,7 +40,8 @@ def init():
                          user_agent=user_agent)
 
     bondha_sub = reddit.subreddit('ni_bondha')
-    my_comments = map(lambda comment: comment.id, list(reddit.redditor('nee_charithra_bot').comments.new(limit=100)))
+    my_comments_set = set(map(lambda comment: comment.id, list(reddit.redditor('nee_charithra_bot')
+                                                               .comments.new(limit=100))))
 
     bondha_submissions = list(bondha_sub.top(limit=1, time_filter="day"))
 
@@ -48,5 +49,5 @@ def init():
         bondha_submission.comments_sort = "top"
         top_comment = bondha_submission.comments.list()[0]
         comment_replies = map(lambda comment_reply: comment_reply.id, top_comment.replies.list())
-        if (len(set(my_comments) & set(comment_replies))) == 0:
+        if (len(my_comments_set & set(comment_replies))) == 0:
             top_comment.reply(body=random.choice(responses))
