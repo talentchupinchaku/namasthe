@@ -42,7 +42,7 @@ def init():
     bondha_sub = reddit.subreddit('ni_bondha')
     my_comments = map(lambda comment: comment.id, list(reddit.redditor('nee_charithra_bot').comments.new(limit=100)))
 
-    bondha_submissions = list(bondha_sub.top(limit=5, time_filter="day"))
+    bondha_submissions = list(bondha_sub.top(limit=1, time_filter="day"))
 
     for bondha_submission in bondha_submissions:
         bondha_submission.comments_sort = "top"
