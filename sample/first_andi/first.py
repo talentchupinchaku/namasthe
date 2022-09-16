@@ -14,11 +14,13 @@ responses = [
     "ఆఁ సర్లే నువ్వెళ్లు",
     "టాలెంటు చుపిస్తున్నావేంటీ",
     "వాడొక పెద్ద సిద్ధాంతి, వీడొక పెద్ద వేదాంతి",
-    "idhi ra intensity ante, idhi ra modulation ante, idhi ra diction ante",
     "అబ్బా సాయిరాం",
     "ఏది, ఒక్కసారి మావయ్యా అనమ్మా",
     "కానివ్వండ్రా, కానివ్వండి",
-    "part lu part lu gaa choosthunte idhi kuda baane undhe"
+    "పార్ట్ లు పార్ట్ లు గా చూస్తుంటే ఇది కూడా బానే ఉందే",
+    "టంగుటూరి వీరేహం ప్రకాహం పంతులు తెలుసా నీకు?",
+    "నువ్వు ఉండవమ్మా, తుత్తుతుతుతు అంటావ్",
+    "మనకి హీరో దొరికేసాడయ్యా ప్రకాశం"
 ]
 
 def init():
@@ -37,21 +39,14 @@ def init():
                          password=password,
                          user_agent=user_agent)
 
-    # to find the top most submission in the subreddit "MLPLounge"
-    my_sub = reddit.subreddit('insginificant')
     bondha_sub = reddit.subreddit('ni_bondha')
-    my_submissions = my_sub.new()
-    my_comments = reddit.redditor('nee_charithra_bot').comments.new(limit=None)
-    for my_comment in my_comments:
-        print("deleting comment: " + my_comment.id)
-        my_comment.delete()
+    my_comments = map(lambda comment: comment.id, list(reddit.redditor('nee_charithra_bot').comments.new(limit=100)))
 
     bondha_submissions = list(bondha_sub.top(limit=5, time_filter="day"))
 
-    for submission in my_submissions:
-        for bondha_submission in bondha_submissions:
-            bondha_submission.comments_sort = "top"
-            comments = bondha_submission.comments.list()
-            for comment in comments:
-                submission.reply(body=(comment.body + " submissionId: " + bondha_submission.id + " I would have replied " + random.choice(responses)))
-                break
+    for bondha_submission in bondha_submissions:
+        bondha_submission.comments_sort = "top"
+        top_comment = bondha_submission.comments.list()[0]
+        comment_replies = map(lambda comment_reply: comment_reply.id, top_comment.replies.list())
+        if (len(set(my_comments) & set(comment_replies))) == 0:
+            top_comment.reply(body=random.choice(responses))
