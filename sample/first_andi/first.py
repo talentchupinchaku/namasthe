@@ -25,8 +25,8 @@ responses = [
 
 def init():
 
-    credential = ManagedIdentityCredential(client_id="49f9fa53-a238-4ac8-b4f2-ab82433075c0")
-    # credential = DefaultAzureCredential()
+    # credential = ManagedIdentityCredential(client_id="49f9fa53-a238-4ac8-b4f2-ab82433075c0")
+    credential = DefaultAzureCredential()
     client = SecretClient(vault_url="https://bondha-vault.vault.azure.net/", credential=credential)
 
     password = client.get_secret("namasthe").value
@@ -43,15 +43,13 @@ def init():
     my_comments_set = set(map(lambda comment: comment.id, list(reddit.redditor('nee_charithra_bot')
                                                                .comments.new(limit=100))))
 
-    bondha_submissions = list(bondha_sub.top(limit=1, time_filter="day"))
-
+    bondha_submissions = list(bondha_sub.top(limit=3, time_filter="day"))
     for bondha_submission in bondha_submissions:
-        bondha_submission.comments_sort = "top"
-        top_comment = bondha_submission.comments.list()[0]
+        bondha_submission.comment_sort = "top"
+        top_comment = bondha_submission.comments.list()
         comment_replies = map(lambda comment_reply: comment_reply.id, top_comment.replies.list())
         if (len(my_comments_set & set(comment_replies))) == 0:
             top_comment.reply(body=prepare_response(random.choice(responses)))
-
 
 def prepare_response(response):
     return response + "\n\n" + "(_this a bot account, upvote if you like the dialogue, redirect your abuse to u/insginificant_)"
