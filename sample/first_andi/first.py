@@ -25,8 +25,8 @@ responses = [
 
 def init():
 
-    # credential = ManagedIdentityCredential(client_id="49f9fa53-a238-4ac8-b4f2-ab82433075c0")
-    credential = DefaultAzureCredential()
+    credential = ManagedIdentityCredential(client_id="49f9fa53-a238-4ac8-b4f2-ab82433075c0")
+    # credential = DefaultAzureCredential()
     client = SecretClient(vault_url="https://bondha-vault.vault.azure.net/", credential=credential)
 
     password = client.get_secret("namasthe").value
