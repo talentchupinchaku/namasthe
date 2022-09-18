@@ -51,4 +51,8 @@ def init():
         top_comment = bondha_submission.comments.list()[0]
         comment_replies = map(lambda comment_reply: comment_reply.id, top_comment.replies.list())
         if (len(my_comments_set & set(comment_replies))) == 0:
-            top_comment.reply(body=random.choice(responses))
+            top_comment.reply(body=prepare_response(random.choice(responses)))
+
+
+def prepare_response(response):
+    return response + "\n\n" + "(_this a bot account, upvote if you like the dialogue, redirect your abuse to u/insginificant_)"
