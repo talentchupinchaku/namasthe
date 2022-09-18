@@ -46,7 +46,7 @@ def init():
     bondha_submissions = list(bondha_sub.top(limit=3, time_filter="day"))
     for bondha_submission in bondha_submissions:
         bondha_submission.comment_sort = "top"
-        top_comment = bondha_submission.comments.list()
+        top_comment = bondha_submission.comments.list()[0]
         comment_replies = map(lambda comment_reply: comment_reply.id, top_comment.replies.list())
         if (len(my_comments_set & set(comment_replies))) == 0:
             top_comment.reply(body=prepare_response(random.choice(responses)))
