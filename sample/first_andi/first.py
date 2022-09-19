@@ -23,6 +23,8 @@ responses = [
     "మనకి హీరో దొరికేసాడయ్యా ప్రకాశం",
     "ఇవే...తగ్గించుకుంటే మంచిది"
 ]
+buffer_submission_size = 5
+actual_submission_size = 1
 
 def init():
 
@@ -44,8 +46,15 @@ def init():
     my_comments_set = set(map(lambda comment: comment.id, list(reddit.redditor('nee_charithra_bot')
                                                                .comments.new(limit=100))))
 
-    bondha_submissions = list(bondha_sub.top(limit=1, time_filter="day"))
-    for bondha_submission in bondha_submissions:
+    bondha_submissions = list(bondha_sub.top(limit=buffer_submission_size, time_filter="day"))
+    actual_bondha_submissions = []
+    for b_submission in bondha_submissions:
+        if not b_submission.locked and len(actual_bondha_submissions) < actual_submission_size:
+            actual_bondha_submissions.append(b_submission)
+        elif len(actual_bondha_submissions) == actual_submission_size:
+            break
+
+    for bondha_submission in actual_bondha_submissions:
         bondha_submission.comment_sort = "top"
         top_comment = bondha_submission.comments.list()[0]
         comment_replies = map(lambda comment_reply: comment_reply.id, top_comment.replies.list())
