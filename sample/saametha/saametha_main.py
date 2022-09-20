@@ -69,21 +69,20 @@ def init():
                          password=password,
                          user_agent=user_agent)
 
-    target_time = datetime.utcnow() - timedelta(minutes=10)
+    target_time = datetime.utcnow() - timedelta(minutes=30)
     my_comment_set = set()
     for comment in reddit.redditor("nee_charithra_bot").comments.new(limit=None):
         if datetime.fromtimestamp(comment.created_utc) > target_time:
             my_comment_set.add(comment.id)
         else:
             break
-    count = 0
+
     for bondha_comment in reddit.subreddit('ni_bondha').comments(limit=500):
         if datetime.utcfromtimestamp(bondha_comment.created_utc) > target_time:
             if bondha_comment.body.lower() == "!saametha".lower():
                 if (len(my_comment_set &
                         set(map(lambda comment_reply: comment_reply.id, bondha_comment.replies.list())))) == 0:
                     bondha_comment.reply(body=prepare_response(random.choice(responses)))
-                    count += 1
         else:
             break
 
