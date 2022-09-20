@@ -49,8 +49,6 @@ responses = [
     "చింత లేనమ్మ సంత లో నిద్రపోయిందట",
     "దయగల మొగుడు దర్వాజా దగ్గరేసి కొట్టాడట పెళ్ళాన్ని"
 ]
-buffer_submission_size = 5
-actual_submission_size = 1
 
 
 def init():
