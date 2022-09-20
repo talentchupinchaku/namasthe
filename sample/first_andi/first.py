@@ -62,4 +62,4 @@ def init():
             top_comment.reply(body=prepare_response(random.choice(responses)))
 
 def prepare_response(response):
-    return response + "\n\n" + "(_this a bot account, upvote if you like the dialogue, redirect your abuse to u/insginificant_)"
+    return response + "\n\n" + "(_this a bot account, upvote if you like the dialogue, redirect abuse to u/insginificant_)"
