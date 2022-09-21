@@ -50,6 +50,7 @@ responses = [
     "దయగల మొగుడు దర్వాజా దగ్గరేసి కొట్టాడట పెళ్ళాన్ని"
 ]
 
+target_word_list = ["saametha", "sametha", "sameta", "saameta", "సామెత", "సామిత", "saamitha", "saamita", "samita", "samitha"]
 
 def init():
     credential = ManagedIdentityCredential(client_id="49f9fa53-a238-4ac8-b4f2-ab82433075c0")
@@ -72,13 +73,17 @@ def init():
     for comment in reddit.redditor("nee_charithra_bot").comments.new(limit=200):
         my_comment_set.add(comment.id)
 
-    for bondha_comment in reddit.subreddit('ni_bondha').comments(limit=500):
+    bondha_comments = list(reddit.subreddit('ni_bondha').comments(limit=500))
+
+    for bondha_comment in bondha_comments:
+        bondha_comment.refresh()
+        bondha_comment_set = set(map(lambda comment_reply: comment_reply.id, bondha_comment.replies.list()))
         if datetime.utcfromtimestamp(bondha_comment.created_utc) > target_time:
-            if bondha_comment.body.lower() == "!saametha".lower():
-                bondha_comment.refresh()
-                if (len(my_comment_set &
-                        set(map(lambda comment_reply: comment_reply.id, bondha_comment.replies.list())))) == 0:
-                    bondha_comment.reply(body=prepare_response(random.choice(responses)))
+            for target_word in target_word_list:
+                if target_word in bondha_comment.body.lower() and bondha_comment.author.name != "nee_charithra_bot":
+                    if (len(my_comment_set & bondha_comment_set)) == 0:
+                        bondha_comment.reply(body=prepare_response(random.choice(responses)))
+                        break
         else:
             break
 
