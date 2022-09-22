@@ -21,7 +21,7 @@ responses = [
     "పొమ్మను వారు కాదు పొగ బెట్టు వారు \n\n If you cannot ask someone to leave, make the situation untenable for them to stay",
     "ఎంకి పెళ్లి సుబ్బి చావుకొచ్చింది \n\n A person is suffering to the maximum because of somebody else's cause(celebrations).",
     "తినడానికి ఏమి లేదు కానీ పెసరపప్పు కి ఎసరు పెట్టమన్నాడట మొగుడు \n\n Wife says its getting impossible (financially) and husband asks for green gram (a kind of lentils, considered premium). Indicates someone being out of touch with reality.",
-    "ఎరిగేటప్పుడు తినద్దురా అంటే అద్దుకు తింటే అన్నాడట \n\n This is used in the context when the experience of others is not made to use and people do exactly opposite to what is suggested.",
+    "ఎరిగేటప్పుడు తినద్దురా అంటే అద్దుకు తింటా అన్నాడట \n\n This is used in the context when the experience of others is not made to use and people do exactly opposite to what is suggested.",
     "తేలుకు పెత్తనం ఇస్తే తెల్లవార్లు కుట్టిందట \n\n Translation: ??",
     "పేనుకు పెత్తనం ఇస్తే తల అంత కొరికి పెట్టిందట \n\n Translation: ??",
     "బెల్లం ఉందా అంటే అల్లం ఉంది అన్నాడు అట \n\n Translation: ??",
