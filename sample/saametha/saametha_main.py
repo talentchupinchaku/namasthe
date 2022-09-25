@@ -47,7 +47,20 @@ responses = [
     "కొండనాలుక కి మందు వేస్తే ఉన్న నాలుక ఊడిందట",
     "అమాయకుడుకి అక్షింతలు ఇస్తే పక్కకి వెళ్లి నోట్లో వేసుకున్నాడట",
     "చింత లేనమ్మ సంత లో నిద్రపోయిందట",
-    "దయగల మొగుడు దర్వాజా దగ్గరేసి కొట్టాడట పెళ్ళాన్ని"
+    "దయగల మొగుడు దర్వాజా దగ్గరేసి కొట్టాడట పెళ్ళాన్ని",
+    "సిద్దడు అద్దంకి వెళ్లనూ వెళ్ళాడు, రానూ వచ్చాడు \n\n Translation: oka raatri Siddadu ni valla nanna, tellavaaragaane, "
+    "addanki pampinchi, oka pani cheyinchukuni raavaali ani siddadi thalli tho chepthunnadu. "
+    "Adhi siddadu vinesi thandri padukogaane addanki velli thellavaaresariki vachesadu. Idhe saametha పుల్లయ్య వ్యామవరం "
+    "ani kuda antaaru",
+    "ఇల్లు కాలి ఇల్లాలు ఏడుస్తుంటే బొగ్గుల వ్యాపారి బేరానికి వచ్చాడట",
+    "జీతం, భత్యం లేకుండా తోడేలు  గొర్రెలని కాస్తానందట",
+    "తిక్కలవాడు తిరనాళ్ళ కి వెళ్తే ఎక్కా, దిగా సరిపోయిందట",
+    "అఆ లు రావు కానీ అగ్రతాంబూలం నాదే అన్నాడట",
+    "గాజుల బేరం భోజనానికి సరి",
+    "అద్దం అబద్దం చెప్పదు",
+    "ఈతకు మించిన లోతు లేదు",
+    "ఆహారానికి ముందుండాలి వ్యవహారానికి వెనకుండాలి",
+    "పాపం అని పాత చీర ఇస్తే, గోడచాటుకి వెళ్లి మూరలేసుకుందట"
 ]
 
 target_word_list = ["saametha", "sametha", "sameta", "saameta", "సామెత", "సామిత", "saamitha", "saamita", "samita", "samitha"]
