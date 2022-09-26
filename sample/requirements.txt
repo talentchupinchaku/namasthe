@@ -5,3 +5,4 @@ azure-identity
 azure-keyvault
 azure-keyvault-secrets
 praw
+utils
