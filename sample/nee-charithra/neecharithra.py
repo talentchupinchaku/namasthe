@@ -8,7 +8,7 @@ from azure.keyvault.secrets import SecretClient
 username = "nee_charithra_bot"
 user_agent = "http-client"
 responses = []
-target_word_list = ["charithra cheppu chiluka", "charithra cheppu chilaka", "naa charithra cheppu", "charithra cheppu"]
+target_word_list = ["charithra cheppu chiluka", "charitra cheppu chiluka", "charithra cheppu chilaka", "charithra cheppu chilaka", "naa charithra cheppu", "naa charitra cheppu", "charithra cheppu", "charitra cheppu"]
 comment_dialog_dictionary = {
     -1: "arey sub ki vachi inka moodu nelalu kuda kaaledha, ela undhi? nachindha?",
     0: "commentlu pettatledem? sigga? bhayama? gouravama?",
@@ -106,7 +106,7 @@ def init():
 
 
 def prepare_response(response):
-    return "gatha moodu nelalu ga:" + "\n\n" + response + "\n\n" + "(_still under construction, reply to this comment with suggestions_)" + "\n\n" + "^(made by) [^(u\insginificant)](https://www.reddit.com/user/insginificant)"
+    return "gatha moodu nelalu ga:" + "\n\n" + response + "\n\n" + "(_under construction, reply to this comment with suggestions_)" + "\n\n" + "^(made by) [^(u/insginificant)](https://www.reddit.com/user/insginificant)"
 
 def calculate_charithra(author, reddit):
     submission_string = calculate_submissions(author, reddit)
@@ -175,7 +175,4 @@ def give_comment_dialog_array(count, pilla_bondha):
     if count / 10 not in comment_dialog_dictionary:
         return comment_dialog_dictionary[50]
     return comment_dialog_dictionary[count / 10]
-
-init()
-
 
