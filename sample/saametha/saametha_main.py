@@ -6,6 +6,7 @@ import praw
 import time
 from azure.identity import DefaultAzureCredential, ManagedIdentityCredential
 from azure.keyvault.secrets import SecretClient
+from random import randrange
 
 # initialize with appropriate values
 username = "nee_charithra_bot"
@@ -59,7 +60,7 @@ responses = [
     "గాజుల బేరం భోజనానికి సరి",
     "అద్దం అబద్దం చెప్పదు",
     "ఈతకు మించిన లోతు లేదు",
-    "ఆహారానికి ముందుండాలి వ్యవహారానికి వెనకుండాలి",
+    "ఆహారానికి ముందుండాలి, వ్యవహారానికి వెనకుండాలి",
     "పాపం అని పాత చీర ఇస్తే, గోడచాటుకి వెళ్లి మూరలేసుకుందట",
     "ఒప్పుకున్న పెళ్ళికి వాయించక తప్పదు",
     "గాడిద సంగీతానికి ఒంటె ఆశ్చర్యపోతే, ఒంటె అందానికి గాడిద మూర్ఛపోయిందట"
@@ -97,7 +98,8 @@ def init():
             for target_word in target_word_list:
                 if target_word in bondha_comment.body.lower() and bondha_comment.author.name != "nee_charithra_bot":
                     if (len(my_comment_set & bondha_comment_set)) == 0:
-                        bondha_comment.reply(body=prepare_response(random.choice(responses)))
+                        random_index = randrange(len(responses))
+                        bondha_comment.reply(body=prepare_response(responses[random_index]))
                         break
         else:
             break

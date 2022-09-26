@@ -29,15 +29,15 @@ def init():
                          password=password,
                          user_agent=user_agent)
 
-    target_time = datetime.utcnow() - timedelta(minutes=55)
-    my_comment_set = set()
-    for comment in reddit.redditor("nee_charithra_bot").comments.new(limit=200):
-        my_comment_set.add(comment.id)
+    # target_time = datetime.utcnow() - timedelta(minutes=55)
+    # my_comment_set = set()
+    # for comment in reddit.redditor("nee_charithra_bot").comments.new(limit=200):
+    #     my_comment_set.add(comment.id)
 
-    bondha_comments = list(reddit.subreddit('ni_bondha').comments(limit=500))
+    # bondha_comments = list(reddit.subreddit('ni_bondha').comments(limit=500))
     start = time.time()
     calculate_charithra("insginificant", reddit)
-    print(time.time() - start)
+    print("total time taken:" + str((time.time() - start)))
 
     # for bondha_comment in bondha_comments:
     #     bondha_comment.refresh()
@@ -56,10 +56,32 @@ def prepare_response(response):
     return response + "\n\n" + "(_this a bot account, upvote if you like the dialogue, redirect abuse to u/insginificant_)"
 
 def calculate_charithra(author, reddit):
-    comment_size = list(reddit.redditor(author).comments.new(limit=None))
-    submission_size = list(reddit.redditor(author).submissions.new(limit=None))
-    print("comments: " + str(len(comment_size)))
-    print("submissions: " + str(len(submission_size)))
+    calculate_comments(author, reddit)
+    # comment_size = list(reddit.redditor(author).comments.new(limit=None))
+    # submission_size = list(reddit.redditor(author).submissions.new(limit=None))
+    # print("comments: " + str(len(comment_size)))
+    # print("submissions: " + str(len(submission_size)))
+    return
+
+
+def calculate_comments(author, reddit):
+    count = 0
+    max_score = 0
+    comment_permalink = ""
+    for comment in reddit.redditor(author).comments.new(limit=None):
+        # if comment.created_utc
+        if comment.subreddit == "Ni_Bondha":
+            count += 1
+            if max_score < comment.score:
+                max_score = comment.score
+                comment_permalink = comment.permalink
+    print(comment_permalink)
+    return
+
+def calculate_submissions():
+    return
+
+def calculate_rating():
     return
 
 init()
