@@ -106,7 +106,7 @@ def init():
 
 
 def prepare_response(response):
-    return "gatha moodu nelalu ga:" + "\n\n" + response + "\n\n" + "(_under construction, message my author with suggestions_)" + "\n\n" + "^(made by) [^(u/insginificant)](https://www.reddit.com/user/insginificant) | [^(Info about me)](https://www.reddit.com/r/nee_charithra_bot/comments/xp8nw4/introduction/)"
+    return "gatha moodu nelalu ga:" + "\n\n" + response + "\n\n" + "(_under construction, message my author with suggestions_)" + "\n\n" + "^(made by) [^(u/insginificant)](https://www.reddit.com/user/insginificant) ^(|) [^(Info about me)](https://www.reddit.com/r/nee_charithra_bot/comments/xp8nw4/introduction/)"
 
 def calculate_charithra(author, reddit):
     submission_string = calculate_submissions(author, reddit)
