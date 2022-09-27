@@ -118,4 +118,4 @@ def init():
             break
 
 def prepare_response(response):
-    return response + "\n\n" + "(_this a bot account, upvote if you like the saametha, redirect abuse to u/insginificant_)"
+    return response + "\n\n" + "^(made by) [^(u/insginificant)](https://www.reddit.com/user/insginificant) | [^(Info about me)](https://www.reddit.com/r/nee_charithra_bot/comments/xp8nw4/introduction/)"
