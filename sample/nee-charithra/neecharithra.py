@@ -131,7 +131,7 @@ def calculate_comments(author, reddit):
                 comment_permalink = comment.permalink
     if count == 0 or count == 1:
         return "ayyagaaru enni hitlu kottaaro nuvvu anni comment lu pettavu\n\n"
-    return_string = "nuvvu sub lo pettina comment lu: " + str(count) + "\n\n" \
+    return_string = "nuvvu sub lo pettina comment lu: " + str(count) + "   \n" \
                     + "rigging chesi vote lu guddinchukunna comment [idhe](https://reddit.com" \
                     + comment_permalink + ")"
     return return_string
@@ -157,7 +157,7 @@ def calculate_submissions(author, reddit):
                 comment_submission_permalink = submission.permalink
     if count == 0:
         return "ayyagaaru enni hit lu kottaro nuvvu anni post lu pettavu\n\n"
-    return_string = "nuvvu sub lo pettina post lu: " + str(count) + "\n\n" \
+    return_string = "nuvvu sub lo pettina post lu: " + str(count) + "   \n" \
                     + "rigging chesi vote lu guddinchukunna submission [idhe](https://reddit.com" \
                     + score_submission_permalink + ")" + "\n\n"
     # if comment_submission_permalink == score_submission_permalink:
