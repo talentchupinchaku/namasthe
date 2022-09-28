@@ -2,7 +2,7 @@ import datetime
 import logging
 
 import azure.functions as func
-from .saametha_main import init
+from .saametha_main import Saametha
 
 def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
@@ -11,5 +11,6 @@ def main(mytimer: func.TimerRequest) -> None:
     if mytimer.past_due:
         logging.info('The timer is past due!')
 
-    init()
+    sm = Saametha()
+    sm.init()
     logging.info('Python timer trigger function ran at %s', utc_timestamp)
