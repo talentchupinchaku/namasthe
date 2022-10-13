@@ -28,9 +28,9 @@ actual_submission_size = 1
 
 def init():
 
-    credential = ManagedIdentityCredential(client_id="49f9fa53-a238-4ac8-b4f2-ab82433075c0")
+    credential = ManagedIdentityCredential(client_id="b0b16c58-d25f-4878-8f38-eb21f62a6321")
     # credential = DefaultAzureCredential()
-    client = SecretClient(vault_url="https://bondha-vault.vault.azure.net/", credential=credential)
+    client = SecretClient(vault_url="https://bondha-keyvault.vault.azure.net/", credential=credential)
 
     password = client.get_secret("namasthe").value
     bot_secret = client.get_secret("bot-secret").value

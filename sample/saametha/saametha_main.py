@@ -91,11 +91,11 @@ class Saametha:
 
     def init(self):
         if Saametha.credential is None:
-            Saametha.credential = ManagedIdentityCredential(client_id="49f9fa53-a238-4ac8-b4f2-ab82433075c0")
+            Saametha.credential = ManagedIdentityCredential(client_id="b0b16c58-d25f-4878-8f38-eb21f62a6321")
             # Saametha.credential = DefaultAzureCredential()
 
         if Saametha.client is None:
-            Saametha.client = SecretClient(vault_url="https://bondha-vault.vault.azure.net/",
+            Saametha.client = SecretClient(vault_url="https://bondha-keyvault.vault.azure.net/",
                                            credential=Saametha.credential)
         if Saametha.saametha_client is None:
             Saametha.saametha_client = Saametha.client.get_secret("saametha-client").value
