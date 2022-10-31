@@ -129,7 +129,7 @@ class Saametha:
                             while random_index in Saametha.used_set:
                                 random_index = randrange(len(Saametha.responses))
                             Saametha.used_set.add(random_index)
-                            if len(Saametha.used_set) > 25:
+                            if len(Saametha.used_set) > 45:
                                 Saametha.used_set = set()
                             bondha_comment.reply(body=Saametha.prepare_response(self, Saametha.responses[random_index]))
                             break
