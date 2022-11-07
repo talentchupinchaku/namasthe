@@ -82,7 +82,7 @@ class NinnatiCharithra:
                     submissions_with_awards_dictionary[submission.shortlink] = award_string
 
             body = "**Yesterday's activity**   \n"
-            body = self.prepare_table(body, flair_dictionary, upvote_ratio_dictionary)
+            # body = self.prepare_table(body, flair_dictionary, upvote_ratio_dictionary)
             if len(submissions_num_comments_dictionary) >= 5:
                 body += "**Top five posts sorted by most commented**   \n"
                 submissions_sorted_by_comments = sorted(submissions_num_comments_dictionary.items(), key=lambda item: item[1], reverse=True)
@@ -92,10 +92,10 @@ class NinnatiCharithra:
                 for each_commented_post in first_five_commented:
                     if use_tab:
                         # comment_sort_string += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "[" + reddit.submission(url=each_commented_post[0]).title + "]" + "(" + each_commented_post[0] + ")" + " (" + str(each_commented_post[1]) + ")" + "   \n"
-                        comment_sort_string += "[^(" + reddit.submission(url=each_commented_post[0]).title + ")]" + "(" + each_commented_post[0] + ")" + "&nbsp;&nbsp;^(" + str(each_commented_post[1]) + " comments )" + "   \n"
+                        comment_sort_string += "[" + reddit.submission(url=each_commented_post[0]).title + "]" + "(" + each_commented_post[0] + ")" + "&nbsp;&nbsp;(" + str(each_commented_post[1]) + " )" + "   \n"
                     else:
                         # print(reddit.submission(url=each_commented_post[0]).title)
-                        comment_sort_string += "[^(" + reddit.submission(url=each_commented_post[0]).title + ")]" + "(" + each_commented_post[0] + ")" + "&nbsp;&nbsp;^(" + str(each_commented_post[1]) + " comments )" + "   \n"
+                        comment_sort_string += "[" + reddit.submission(url=each_commented_post[0]).title + "]" + "(" + each_commented_post[0] + ")" + "&nbsp;&nbsp;(" + str(each_commented_post[1]) + " )" + "   \n"
                     use_tab = ~use_tab
                 body += comment_sort_string
 
@@ -106,9 +106,9 @@ class NinnatiCharithra:
                 for each_submission_with_award in submissions_with_awards_dictionary.items():
                     if use_tab:
                         # award_string += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "[" + reddit.submission(url=each_submission_with_award[0]).title + "]" + "(" + each_submission_with_award[0] + ")" + " (" + str(each_submission_with_award[1]) + ")" + "   \n"
-                        award_string += "[^(" + reddit.submission(url=each_submission_with_award[0]).title + ")]" + "(" + each_submission_with_award[0] + ")" + " ^((" + str(each_submission_with_award[1]) + "\))" + "   \n"
+                        award_string += "[" + reddit.submission(url=each_submission_with_award[0]).title + "]" + "(" + each_submission_with_award[0] + ")" + " (" + str(each_submission_with_award[1]) + ")" + "   \n"
                     else:
-                        award_string += "[^(" + reddit.submission(url=each_submission_with_award[0]).title + ")]" + "(" + each_submission_with_award[0] + ")" + " ^((" + str(each_submission_with_award[1]) + "\))" + "   \n"
+                        award_string += "[" + reddit.submission(url=each_submission_with_award[0]).title + "]" + "(" + each_submission_with_award[0] + ")" + " (" + str(each_submission_with_award[1]) + ")" + "   \n"
                     use_tab = ~use_tab
                 body += award_string
 
@@ -120,7 +120,7 @@ class NinnatiCharithra:
                         submission_time = split_string[-3]
                         upvote_ratio = split_string[-1]
                         if datetime.utcfromtimestamp(float(submission_time)) < (datetime.utcnow() - timedelta(hours=6)):
-                            controversial_upvote_list.append("[^(" + reddit.submission(url=split_string[0].strip()).title + ")]" + "(" + split_string[0] + ")" + " ^(ratio: " + upvote_ratio + ")")
+                            controversial_upvote_list.append("[" + reddit.submission(url=split_string[0].strip()).title + ")]" + "(" + split_string[0] + ")" + " ratio: " + upvote_ratio)
 
             if len(controversial_upvote_list) > 0:
                 body += "**Posts with controversial upvote ratio**   \n"
