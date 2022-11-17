@@ -80,11 +80,10 @@ class NinnatiCharithra:
                     award_string_suffix = ", "
                 if len(award_string) > 0:
                     submissions_with_awards_dictionary[submission.shortlink] = award_string
-
             body = "**Yesterday's activity**   \n"
             # body = self.prepare_table(body, flair_dictionary, upvote_ratio_dictionary)
             if len(submissions_num_comments_dictionary) >= 5:
-                body += "**Top five posts sorted by most commented**   \n"
+                body += "**Top five posts sorted by most commented:**   \n"
                 submissions_sorted_by_comments = sorted(submissions_num_comments_dictionary.items(), key=lambda item: item[1], reverse=True)
                 first_five_commented = submissions_sorted_by_comments[0:5]
                 use_tab = False
@@ -92,15 +91,15 @@ class NinnatiCharithra:
                 for each_commented_post in first_five_commented:
                     if use_tab:
                         # comment_sort_string += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "[" + reddit.submission(url=each_commented_post[0]).title + "]" + "(" + each_commented_post[0] + ")" + " (" + str(each_commented_post[1]) + ")" + "   \n"
-                        comment_sort_string += "[" + reddit.submission(url=each_commented_post[0]).title + "]" + "(" + each_commented_post[0] + ")" + "&nbsp;&nbsp;(" + str(each_commented_post[1]) + " )" + "   \n"
+                        comment_sort_string += "[" + reddit.submission(url=each_commented_post[0]).title + "]" + "(" + each_commented_post[0] + ")" + "&nbsp;&nbsp;(" + str(each_commented_post[1]) + ")" + "   \n"
                     else:
                         # print(reddit.submission(url=each_commented_post[0]).title)
                         comment_sort_string += "[" + reddit.submission(url=each_commented_post[0]).title + "]" + "(" + each_commented_post[0] + ")" + "&nbsp;&nbsp;(" + str(each_commented_post[1]) + " )" + "   \n"
                     use_tab = ~use_tab
-                body += comment_sort_string
+                body += comment_sort_string + "   \n"
 
             if len(submissions_with_awards_dictionary) > 0:
-                body += "**Posts with awards**   \n"
+                body += "**Posts with awards:**   \n"
                 award_string = ""
                 use_tab = False
                 for each_submission_with_award in submissions_with_awards_dictionary.items():
@@ -110,7 +109,7 @@ class NinnatiCharithra:
                     else:
                         award_string += "[" + reddit.submission(url=each_submission_with_award[0]).title + "]" + "(" + each_submission_with_award[0] + ")" + " (" + str(each_submission_with_award[1]) + ")" + "   \n"
                     use_tab = ~use_tab
-                body += award_string
+                body += award_string + "   \n"
 
             controversial_upvote_list = []
             for item in upvote_ratio_dictionary.items():
@@ -123,7 +122,7 @@ class NinnatiCharithra:
                             controversial_upvote_list.append("[" + reddit.submission(url=split_string[0].strip()).title + ")]" + "(" + split_string[0] + ")" + " ratio: " + upvote_ratio)
 
             if len(controversial_upvote_list) > 0:
-                body += "**Posts with controversial upvote ratio**   \n"
+                body += "**Posts with controversial upvote ratio:**   \n"
                 use_tab = False
                 for each_controversial_upvote in controversial_upvote_list:
                     if use_tab:
@@ -133,7 +132,8 @@ class NinnatiCharithra:
                         body += each_controversial_upvote + "   \n"
                     use_tab = ~use_tab
                 # print(body)
-            body += "\n\n" + "^(made by) [^(u/insginificant)](https://www.reddit.com/user/insginificant) ^(|) " \
+            disclaimer_string = "_Note: Please upvote this comment if you find this information useful. Also, respond with a comment and tag ^(u/insginificant) if you have any feedback_   \n"
+            body += disclaimer_string + "\n" + "^(made by) [^(u/insginificant)](https://www.reddit.com/user/insginificant) ^(|) " \
                                        "[^(About me)](https://www.reddit.com/r/nee_charithra_bot/comments/xp8nw4/introduction/)"
             # reddit.submission("yhrs2g").reply(body=body)
             latest_automoderator_submission.reply(body=body)
