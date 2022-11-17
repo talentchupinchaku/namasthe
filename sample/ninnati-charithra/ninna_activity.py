@@ -94,7 +94,7 @@ class NinnatiCharithra:
                         comment_sort_string += "[" + reddit.submission(url=each_commented_post[0]).title + "]" + "(" + each_commented_post[0] + ")" + "&nbsp;&nbsp;(" + str(each_commented_post[1]) + ")" + "   \n"
                     else:
                         # print(reddit.submission(url=each_commented_post[0]).title)
-                        comment_sort_string += "[" + reddit.submission(url=each_commented_post[0]).title + "]" + "(" + each_commented_post[0] + ")" + "&nbsp;&nbsp;(" + str(each_commented_post[1]) + " )" + "   \n"
+                        comment_sort_string += "[" + reddit.submission(url=each_commented_post[0]).title + "]" + "(" + each_commented_post[0] + ")" + "&nbsp;&nbsp;(" + str(each_commented_post[1]) + ")" + "   \n"
                     use_tab = ~use_tab
                 body += comment_sort_string + "   \n"
 
@@ -119,7 +119,7 @@ class NinnatiCharithra:
                         submission_time = split_string[-3]
                         upvote_ratio = split_string[-1]
                         if datetime.utcfromtimestamp(float(submission_time)) < (datetime.utcnow() - timedelta(hours=6)):
-                            controversial_upvote_list.append("[" + reddit.submission(url=split_string[0].strip()).title + ")]" + "(" + split_string[0] + ")" + " ratio: " + upvote_ratio)
+                            controversial_upvote_list.append("[" + reddit.submission(url=split_string[0].strip()).title + "]" + "(" + split_string[0] + ")" + " ratio: " + upvote_ratio)
 
             if len(controversial_upvote_list) > 0:
                 body += "**Posts with controversial upvote ratio:**   \n"
@@ -132,7 +132,7 @@ class NinnatiCharithra:
                         body += each_controversial_upvote + "   \n"
                     use_tab = ~use_tab
                 # print(body)
-            disclaimer_string = "_Note: Please upvote this comment if you find this information useful. Also, respond with a comment and tag ^(u/insginificant) if you have any feedback_   \n"
+            disclaimer_string = "   \n^(Note: Please upvote this comment if you find this information useful. Also, respond with a comment and tag u/insginificant if you have any feedback)   \n"
             body += disclaimer_string + "\n" + "^(made by) [^(u/insginificant)](https://www.reddit.com/user/insginificant) ^(|) " \
                                        "[^(About me)](https://www.reddit.com/r/nee_charithra_bot/comments/xp8nw4/introduction/)"
             # reddit.submission("yhrs2g").reply(body=body)
