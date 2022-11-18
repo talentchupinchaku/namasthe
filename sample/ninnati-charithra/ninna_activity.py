@@ -75,12 +75,14 @@ class NinnatiCharithra:
                 submissions_num_comments_dictionary[submission.shortlink] = submission.num_comments
                 award_string = ""
                 award_string_suffix = ""
+                total_awards = 0
                 for award in submission.all_awardings:
                     award_string += award_string_suffix + award["name"] + "(" + str(award["count"]) + "\)"
+                    total_awards += award["count"]
                     award_string_suffix = ", "
                 if len(award_string) > 0:
-                    submissions_with_awards_dictionary[submission.shortlink] = award_string
-            body = "**Yesterday's activity**   \n"
+                    submissions_with_awards_dictionary[submission.shortlink] = total_awards
+            body = "**Yesterday's activity**\n\n"
             # body = self.prepare_table(body, flair_dictionary, upvote_ratio_dictionary)
             if len(submissions_num_comments_dictionary) >= 5:
                 body += "**Top five posts sorted by most commented:**   \n"
@@ -132,8 +134,8 @@ class NinnatiCharithra:
                         body += each_controversial_upvote + "   \n"
                     use_tab = ~use_tab
                 # print(body)
-            disclaimer_string = "   \n^(Note: Please upvote this comment if you find this information useful. Also, respond with a comment and tag u/insginificant if you have any feedback)   \n"
-            body += disclaimer_string + "\n" + "^(made by) [^(u/insginificant)](https://www.reddit.com/user/insginificant) ^(|) " \
+            disclaimer_string = "   \n^(Note: Please upvote this comment if you find this information useful. Also, respond with a comment and tag the author if you have any feedback)"
+            body += disclaimer_string + "   \n^(made by) [^(u/insginificant)](https://www.reddit.com/user/insginificant) ^(|) " \
                                        "[^(About me)](https://www.reddit.com/r/nee_charithra_bot/comments/xp8nw4/introduction/)"
             # reddit.submission("yhrs2g").reply(body=body)
             latest_automoderator_submission.reply(body=body)
