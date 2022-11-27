@@ -177,7 +177,7 @@ class NeeCharithra:
         if count == 0:
             return "ayyagaaru enni hit lu kottaro nuvvu anni post lu pettavu   \n"
         return_string = "nuvvu sub lo pettina post lu: " + str(count) + "   \n" \
-                        + "rigging chesi vote lu guddinchukunna [post](https://reddit.com" \
+                        + "lancham ichi vote lu veyinchukunna [post](https://reddit.com" \
                         + score_submission_permalink + ")" + "   \n"
         # if comment_submission_permalink == score_submission_permalink:
         #     return_string = return_string + "kuda "
