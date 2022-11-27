@@ -77,10 +77,11 @@ class NeeCharithra:
 
         if NeeCharithra.credential is None:
             NeeCharithra.credential = ManagedIdentityCredential(client_id="b0b16c58-d25f-4878-8f38-eb21f62a6321")
-            # credential = DefaultAzureCredential()
+            # NeeCharithra.credential = DefaultAzureCredential()
 
         if NeeCharithra.client is None:
-            NeeCharithra.client = SecretClient(vault_url="https://bondha-keyvault.vault.azure.net/", credential=NeeCharithra.credential)
+            NeeCharithra.client = SecretClient(vault_url="https://bondha-keyvault.vault.azure.net/",
+                                               credential=NeeCharithra.credential)
 
         if NeeCharithra.password is None:
             NeeCharithra.password = NeeCharithra.client.get_secret("namasthe").value
@@ -162,7 +163,7 @@ class NeeCharithra:
         comment_submission_permalink = ""
         target_time = datetime.utcnow() - timedelta(days=90)
         for submission in reddit.redditor(author).submissions.new(limit=None):
-            if datetime.utcfromtimestamp(submission.created_utc) < target_time:
+            if datetime.utcfromtimestamp(submission.created_utc) < target_time and not submission.stickied:
                 break
             if submission.subreddit == "Ni_Bondha":
                 count += 1
