@@ -165,14 +165,15 @@ class NeeCharithra:
         for submission in reddit.redditor(author).submissions.new(limit=None):
             if datetime.utcfromtimestamp(submission.created_utc) < target_time and not submission.stickied:
                 break
-            if submission.subreddit == "Ni_Bondha":
-                count += 1
-                if max_score < submission.score:
-                    max_score = submission.score
-                    score_submission_permalink = submission.permalink
-                if max_comments < submission.num_comments:
-                    max_comments = submission.num_comments
-                    comment_submission_permalink = submission.permalink
+            if not datetime.utcfromtimestamp(submission.created_utc) < target_time:
+                if submission.subreddit == "Ni_Bondha":
+                    count += 1
+                    if max_score < submission.score:
+                        max_score = submission.score
+                        score_submission_permalink = submission.permalink
+                    if max_comments < submission.num_comments:
+                        max_comments = submission.num_comments
+                        comment_submission_permalink = submission.permalink
         if count == 0:
             return "ayyagaaru enni hit lu kottaro nuvvu anni post lu pettavu   \n"
         return_string = "nuvvu sub lo pettina post lu: " + str(count) + "   \n" \
