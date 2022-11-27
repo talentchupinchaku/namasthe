@@ -7,15 +7,18 @@ class Assimilator:
     def assimilate_summary(self, reddit, awarded_posts, controversial_posts, data_builder, discussed_posts):
         submissions = reddit.subreddit("ni_bondha").top(time_filter="day")
         recent_submissions = reddit.subreddit("ni_bondha").new(limit=400)
-        latest_automoderator_submission = None
+        automoderator_submissions = []
         for recent_submission in recent_submissions:
-            if recent_submission.author == "AutoModerator" and "ఈ రోజు ఊర పంచాయతీ" in recent_submission.title:
-                if latest_automoderator_submission is None:
-                    latest_automoderator_submission = recent_submission
-                elif recent_submission.created_utc > latest_automoderator_submission.created_utc:
-                    latest_automoderator_submission = recent_submission
+            if recent_submission.author == "AutoModerator" \
+                    and "ఈ రోజు ఊర పంచాయతీ" in recent_submission.title \
+                    and len(automoderator_submissions) < 2:
+                automoderator_submissions.append(recent_submission)
+            if len(automoderator_submissions) == 2:
+                break
 
         history_posted = False
+        latest_automoderator_submission = automoderator_submissions[0]
+        previous_automoderator_submission = automoderator_submissions[1]
 
         if latest_automoderator_submission is not None:
             latest_automoderator_comments = latest_automoderator_submission.comments.list()
@@ -24,10 +27,15 @@ class Assimilator:
                     continue
                 if latest_automoderator_comment.author == "nee_charithra_bot" and "Yesterday" in latest_automoderator_comment.body:
                     history_posted = True
-                    self.previous_summary_comment = latest_automoderator_comment
 
         if not history_posted and latest_automoderator_submission is not None:
         # if True:
+            previous_automoderator_comments = previous_automoderator_submission.comments.list()
+            for previous_automoderator_comment in previous_automoderator_comments:
+                if isinstance(previous_automoderator_comment, MoreComments):
+                    continue
+                if previous_automoderator_comment.author == "nee_charithra_bot" and "Yesterday" in previous_automoderator_comment.body:
+                    self.previous_summary_comment = previous_automoderator_comment
             flair_dictionary = {}
             upvote_ratio_dictionary = {}
             submissions_num_comments_dictionary = {}

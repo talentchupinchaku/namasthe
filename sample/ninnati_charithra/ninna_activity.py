@@ -3,8 +3,8 @@ import praw
 from azure.identity import DefaultAzureCredential, ManagedIdentityCredential
 from azure.keyvault.secrets import SecretClient
 
-from PostAssimilator import assimilator
-from Component import awarded_posts, controversial_posts, data_builder, discussed_posts
+from .PostAssimilator import assimilator
+from .Component import awarded_posts, controversial_posts, data_builder, discussed_posts
 
 class NinnatiCharithra:
     username = "nee_charithra_bot"
