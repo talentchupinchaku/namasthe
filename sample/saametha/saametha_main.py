@@ -8,6 +8,7 @@ from azure.identity import DefaultAzureCredential, ManagedIdentityCredential
 from azure.keyvault.secrets import SecretClient
 from random import randrange
 
+
 class Saametha:
     # initialize with appropriate values
     username = "nee_charithra_bot"
@@ -49,6 +50,28 @@ class Saametha:
         "కొండనాలుక కి మందు వేస్తే ఉన్న నాలుక ఊడిందట",
         "అమాయకుడుకి అక్షింతలు ఇస్తే పక్కకి వెళ్లి నోట్లో వేసుకున్నాడట",
         "చింత లేనమ్మ సంత లో నిద్రపోయిందట",
+        "సూది కోసం సోదికెళ్తే పాత రంకంతా బైట పడిందట",
+        "ఏ మొగుడూ దొరక్కుంటే అక్క మొగుడే దిక్కన్నట్లు",
+        "తలపాగా చుట్టడం రాక తల వంకర అన్నాడట",
+        "తాను వలచింది రంభ తాను మునిగింది గంగ",
+        "నిజం గడప దాటే లోపు అబద్ధం ఊరంతా తిరిగి వస్తుంది",
+        "గాడిద మొహాన బూడిద పామినట్టు",
+        "పిల్లి గుడ్డిదైతే ఎలుక వెక్కిరించిందట",
+        "అన్నీ తెలిసినమ్మా అమావాస్య నాడు చస్తే ఏమి తెలియనమ్మ ఏకాదశి నాడు చచ్చిందట",
+        "ఏబ్రాసి కి పనెక్కువ లోభికి ఖర్చెక్కువ",
+        "నడిమంత్రపు సిరికి నెత్తి మీద కళ్ళు",
+        "అంబరాన బిడ్డ పుడితే ఆముదం పెట్టి ముడ్డి కడిగిందట",
+        "కొండకు వెంట్రుక ముడి వేస్తే వస్తే కొండ పోతే వెంట్రుకే",
+        "ప్రేమగా ఏం వండిపెట్టను అంటే వెన్న తో అట్టేయమనే రకం",
+        "పపతివ్రత పరవాన్నం వండితే తెల్లారేదాకా చల్లారలేదట",
+        "అమ్మకు అన్నం పెట్టాడు కానీ పిన్నమ్మకు బంగారు గాజులు చేయిస్తా అన్నాడట",
+        "మన బంగారం మంచిదైతే కంసాలిని వన్నె అడగటం దేనికి",
+        "ఒడ్డునుండి ఎన్నైనా చెప్తారు",
+        "నూరు నోములు ఒక్క రంకుతో సరి",
+        "ఇంట్లో ఇనప సీల బైట బంగారపు సీల",
+        "జుట్టున్నమ్మ ఏ కొప్పు అయినా పెడుతుంది",
+        "ఇడిసేసింది ఈదికి పెద్ద ఉంచుకున్నది ఊరికి పెద్ద",
+        "కొండముచ్చు పెళ్ళికి కోతి పేరంటాళ్ళు",
         "దయగల మొగుడు దర్వాజా దగ్గరేసి కొట్టాడట పెళ్ళాన్ని",
         "సిద్దడు అద్దంకి వెళ్లనూ వెళ్ళాడు, రానూ వచ్చాడు \n\n Translation: oka raatri Siddadu ni valla nanna, tellavaaragaane, "
         "addanki pampinchi, oka pani cheyinchukuni raavaali ani siddadi thalli tho chepthunnadu. "
@@ -82,6 +105,7 @@ class Saametha:
     used_set = set()
     target_word_list = ["saametha", "sametha", "sameta", "saameta", "సామెత",
                         "సామిత", "saamitha", "saamita", "samita", "samitha"]
+    curr_responses_used = len(responses) - 1
     credential = None
     # credential = DefaultAzureCredential()
     client = None
@@ -125,12 +149,12 @@ class Saametha:
                 for target_word in Saametha.target_word_list:
                     if target_word in bondha_comment.body.lower() and bondha_comment.author.name != "nee_charithra_bot":
                         if (len(my_comment_set & bondha_comment_set)) == 0:
-                            random_index = randrange(len(Saametha.responses))
-                            while random_index in Saametha.used_set:
-                                random_index = randrange(len(Saametha.responses))
-                            Saametha.used_set.add(random_index)
-                            if len(Saametha.used_set) > 45:
-                                Saametha.used_set = set()
+                            random_index = randrange(Saametha.curr_responses_used + 1)
+                            Saametha.responses[random_index], Saametha.responses[Saametha.curr_responses_used] = \
+                                Saametha.responses[Saametha.curr_responses_used], Saametha.responses[random_index]
+                            Saametha.curr_responses_used -= 1
+                            if Saametha.curr_responses_used < 40:
+                                Saametha.curr_responses_used = len(Saametha.responses) - 1
                             bondha_comment.reply(body=Saametha.prepare_response(self, Saametha.responses[random_index]))
                             break
             else:
