@@ -2,8 +2,8 @@
 class AwardedPosts:
 
     def prepare_awarded_posts(self, body, submissions_with_awards_dictionary, reddit):
+        body += "**Posts with awards:**   \n"
         if len(submissions_with_awards_dictionary) > 0:
-            body += "**Posts with awards:**   \n"
             award_string = ""
             use_tab = False
             for each_submission_with_award in submissions_with_awards_dictionary.items():
@@ -18,4 +18,6 @@ class AwardedPosts:
                         each_submission_with_award[1]) + ")" + "   \n"
                 use_tab = ~use_tab
             body += award_string + "   \n"
+        else:
+            body += "no posts with awards yesterday :(   \n"
         return body

@@ -21,4 +21,6 @@ class DiscussedPosts:
                         each_commented_post[1]) + ")" + "   \n"
                 use_tab = ~use_tab
             body += comment_sort_string + "   \n"
+        else:
+            body += "not even five posts were submitted yesterda :(   \n"
         return body

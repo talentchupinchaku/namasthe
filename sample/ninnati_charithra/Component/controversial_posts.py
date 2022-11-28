@@ -4,10 +4,12 @@ class ControversialPosts:
 
     def prepare_controversial_posts(self, body, upvote_ratio_dictionary, reddit):
         controversial_upvote_list = self.build_controversial_upvote_list(upvote_ratio_dictionary, reddit)
+        body += "**Posts with controversial upvote ratio:**   \n"
         if len(controversial_upvote_list) > 0:
-            body += "**Posts with controversial upvote ratio:**   \n"
             for each_controversial_upvote in controversial_upvote_list:
                     body += each_controversial_upvote + "   \n"
+        else:
+            body += "no controversial posts yesterday :(   \n"
         return body
 
     def build_controversial_upvote_list(self, upvote_ratio_dictionary, reddit):
