@@ -58,6 +58,7 @@ class Assimilator:
 
             body += "   \n [previous summary](" + "https://reddit.com" + self.previous_summary_comment.permalink + ")"
             disclaimer_string = "   \n(_Please upvote this comment if you find this information useful. Also, respond with a comment and tag the author if you have any feedback._)"
+            disabled_others_string = "   \n **Note: I temporarily disabled sametha and three-month-acitivity bots to avoid spam. I will reenable them in a few weeks**"
             body += disclaimer_string + "   \n^(made by) [^(u/insginificant)](https://www.reddit.com/user/insginificant) ^(|) " \
                                         "[^(About me)](https://www.reddit.com/r/nee_charithra_bot/comments/xp8nw4/introduction/)"
             # reddit.submission("yhrs2g").reply(body=body)
