@@ -155,7 +155,7 @@ class Saametha:
                             Saametha.curr_responses_used -= 1
                             if Saametha.curr_responses_used < 40:
                                 Saametha.curr_responses_used = len(Saametha.responses) - 1
-                            bondha_comment.reply(body="You said variations of proverb somewhere in your comment and I'm supposed to respond with a one, but I disabled this work temporarily. I will make some changes and reenable this in few weeks")
+                            bondha_comment.reply(body="Hello u/" + bondha_comment.author.name + " you said variations of proverb somewhere in your comment and I'm supposed to respond with one, but I disabled this work temporarily. I will make some changes and reenable this in few weeks")
                             # bondha_comment.reply(body=Saametha.prepare_response(self, Saametha.responses[random_index]))
                             break
             else:
