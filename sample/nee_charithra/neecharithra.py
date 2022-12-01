@@ -114,7 +114,8 @@ class NeeCharithra:
                     if target_word in bondha_comment.body.lower() and bondha_comment.author.name != "nee_charithra_bot":
                         if (len(my_comment_set & bondha_comment_set)) == 0:
                             response = NeeCharithra.calculate_charithra(self, bondha_comment.author.name, reddit)
-                            bondha_comment.reply(body=response)
+                            bondha_comment.reply(body="You asked for charithra somewhere in your comment and I'm supposed to respond with your acitivity, but I disabled this work temporarily. I will make some changes and reenable this in few weeks")
+                            # bondha_comment.reply(body=response)
                             break
             else:
                 break
