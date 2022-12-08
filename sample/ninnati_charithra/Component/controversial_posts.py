@@ -21,7 +21,7 @@ class ControversialPosts:
                     submission_time = split_string[-3]
                     upvote_ratio = split_string[-1]
                     if datetime.utcfromtimestamp(float(submission_time)) < (datetime.utcnow() - timedelta(hours=6)):
-                        curr_submission = reddit.submission(url=split_string[0].strip()).title
+                        curr_submission = reddit.submission(url=split_string[0].strip())
                         title_string = curr_submission.title
                         if len(title_string) < 3:
                             title_string = curr_submission.id
