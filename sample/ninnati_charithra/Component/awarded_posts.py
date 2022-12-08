@@ -5,18 +5,14 @@ class AwardedPosts:
         body += "**Posts with awards:**   \n"
         if len(submissions_with_awards_dictionary) > 0:
             award_string = ""
-            use_tab = False
             for each_submission_with_award in submissions_with_awards_dictionary.items():
-                if use_tab:
-                    # award_string += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "[" + reddit.submission(url=each_submission_with_award[0]).title + "]" + "(" + each_submission_with_award[0] + ")" + " (" + str(each_submission_with_award[1]) + ")" + "   \n"
-                    award_string += "[" + reddit.submission(url=each_submission_with_award[0]).title + "]" + "(" + \
-                                    each_submission_with_award[0] + ")" + " (" + str(
-                        each_submission_with_award[1]) + ")" + "   \n"
-                else:
-                    award_string += "[" + reddit.submission(url=each_submission_with_award[0]).title + "]" + "(" + \
-                                    each_submission_with_award[0] + ")" + " (" + str(
-                        each_submission_with_award[1]) + ")" + "   \n"
-                use_tab = ~use_tab
+                curr_submission = reddit.submission(url=each_submission_with_award[0])
+                title_string = curr_submission.title
+                if len(title_string) < 3:
+                    title_string = curr_submission.id
+                award_string += "[" + title_string + "]" + "(" + \
+                                each_submission_with_award[0] + ")" + " (" + str(
+                    each_submission_with_award[1]) + ")" + "   \n"
             body += award_string + "   \n"
         else:
             body += "no posts with awards yesterday :(   \n"
