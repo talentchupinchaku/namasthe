@@ -4,5 +4,6 @@ azure-functions
 azure-identity
 azure-keyvault
 azure-keyvault-secrets
+azure-storage-blob
 praw
 utils
