@@ -167,7 +167,7 @@ class Saametha:
                             while random_index in random_index_list:
                                 random_index = randrange(len(Saametha.responses) + 1)
                             random_index_list.append(random_index)
-                            bondha_comment.reply(body=Saametha.prepare_response(self, Saametha.responses[random_index]))
+                            bondha_comment.reply(body=Saametha.prepare_response(self, "hello u/" + bondha_comment.author.name + " here is your proverb   \n" + Saametha.responses[random_index]))
                             if len(random_index_list) > 40:
                                 random_index_list = []
                             used_indexes_blob_client.upload_blob(json.dumps(random_index_list), overwrite=True)

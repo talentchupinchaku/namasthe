@@ -17,6 +17,3 @@ def main(mytimer: func.TimerRequest) -> None:
     sm = Saametha()
     sm.init()
     logging.info('Python timer trigger function ran at %s', utc_timestamp)
-
-sm = Saametha()
-sm.init()
