@@ -105,7 +105,7 @@ class Saametha:
         "వేలు ఇస్తే చెయ్యి గుంజిందట"
     ]
     target_word_list = ["saametha", "sametha", "sameta", "saameta", "సామెత",
-                        "సామిత", "saamitha", "saamita", "samita", "samitha"]
+                        "సామిత", "saamitha", "saamita", "samita", "samitha", "sameetha"]
     credential = None
     # credential = DefaultAzureCredential()
     client = None
