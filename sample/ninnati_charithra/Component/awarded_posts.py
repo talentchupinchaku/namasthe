@@ -15,5 +15,5 @@ class AwardedPosts:
                     each_submission_with_award[1]) + ")" + "   \n"
             body += award_string + "   \n"
         else:
-            body += "no posts with awards yesterday :(   \n"
+            body += "no posts with awards yesterday :(   \n\n"
         return body

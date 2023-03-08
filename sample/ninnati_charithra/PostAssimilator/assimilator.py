@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from praw.models import MoreComments
 
 class Assimilator:
@@ -5,7 +6,14 @@ class Assimilator:
     previous_summary_comment = None
 
     def assimilate_summary(self, reddit, awarded_posts, controversial_posts, data_builder, discussed_posts):
-        submissions = reddit.subreddit("ni_bondha").top(time_filter="day")
+        submissions = reddit.subreddit("ni_bondha").new(limit=100)
+        three_day_submissions = []
+        for submission in submissions:
+            if datetime.utcfromtimestamp(submission.created_utc) <= datetime.utcnow() - timedelta(hours=36):
+                three_day_submissions.append(submission)
+            else:
+                break
+        submissions = three_day_submissions
         recent_submissions = reddit.subreddit("ni_bondha").new(limit=400)
         automoderator_submissions = []
         for recent_submission in recent_submissions:
@@ -34,7 +42,7 @@ class Assimilator:
             for previous_automoderator_comment in previous_automoderator_comments:
                 if isinstance(previous_automoderator_comment, MoreComments):
                     continue
-                if previous_automoderator_comment.author == "nee_charithra_bot" and "Yesterday" in previous_automoderator_comment.body:
+                if previous_automoderator_comment.author == "nee_charithra_bot" and "controversial upvote ratio" in previous_automoderator_comment.body:
                     self.previous_summary_comment = previous_automoderator_comment
             flair_dictionary = {}
             upvote_ratio_dictionary = {}
@@ -46,7 +54,7 @@ class Assimilator:
                                                        upvote_ratio_dictionary,
                                                        submissions_num_comments_dictionary,
                                                        submissions_with_awards_dictionary)
-            body = "**Yesterday's activity**\n\n"
+            body = "**Last three days' activity**\n\n"
             discussed_posts_component = discussed_posts.DiscussedPosts()
             body = discussed_posts_component.prepare_discussed_posts(body, submissions_num_comments_dictionary, reddit)
 
@@ -58,8 +66,8 @@ class Assimilator:
 
             body += "   \n [previous summary](" + "https://reddit.com" + self.previous_summary_comment.permalink + ")"
             disclaimer_string = "   \n(_Please upvote this comment if you find this information useful. Also, respond with a comment and tag the author if you have any feedback._)"
-            disabled_others_string = "   \n **Note: I temporarily disabled other functionalities of this bot to avoid spam. I will reenable them in a few weeks**"
-            body += disclaimer_string + disabled_others_string + "   \n^(made by) [^(u/insginificant)](https://www.reddit.com/user/insginificant) ^(|) " \
+            # disabled_others_string = "   \n **Note: I temporarily disabled other functionalities of this bot to avoid spam. I will reenable them in a few weeks**"
+            body += disclaimer_string + "   \n^(made by) [^(u/insginificant)](https://www.reddit.com/user/insginificant) ^(|) " \
                                         "[^(About me)](https://www.reddit.com/r/nee_charithra_bot/comments/xp8nw4/introduction/)"
             # reddit.submission("yhrs2g").reply(body=body)
             latest_automoderator_submission.reply(body=body)

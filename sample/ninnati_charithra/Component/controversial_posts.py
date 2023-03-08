@@ -9,7 +9,7 @@ class ControversialPosts:
             for each_controversial_upvote in controversial_upvote_list:
                     body += each_controversial_upvote + "   \n"
         else:
-            body += "no controversial posts yesterday :(   \n"
+            body += "no controversial posts in last three days :(   \n"
         return body
 
     def build_controversial_upvote_list(self, upvote_ratio_dictionary, reddit):

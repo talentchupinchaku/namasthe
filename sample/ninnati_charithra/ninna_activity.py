@@ -1,10 +1,13 @@
 import praw
+import os
+import sys
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__))))
 from azure.identity import DefaultAzureCredential, ManagedIdentityCredential
 from azure.keyvault.secrets import SecretClient
 
-from .PostAssimilator import assimilator
-from .Component import awarded_posts, controversial_posts, data_builder, discussed_posts
+from PostAssimilator import assimilator
+from Component import awarded_posts, controversial_posts, data_builder, discussed_posts
 
 class NinnatiCharithra:
     username = "nee_charithra_bot"
@@ -16,8 +19,8 @@ class NinnatiCharithra:
     password = None
     def __init__(self):
         if NinnatiCharithra.credential is None:
-            NinnatiCharithra.credential = ManagedIdentityCredential(client_id="b0b16c58-d25f-4878-8f38-eb21f62a6321")
-            # NinnatiCharithra.credential = DefaultAzureCredential()
+            # NinnatiCharithra.credential = ManagedIdentityCredential(client_id="b0b16c58-d25f-4878-8f38-eb21f62a6321")
+            NinnatiCharithra.credential = DefaultAzureCredential()
 
         if NinnatiCharithra.client is None:
             NinnatiCharithra.client = SecretClient(vault_url="https://bondha-keyvault.vault.azure.net/",
