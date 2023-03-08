@@ -19,8 +19,8 @@ class NinnatiCharithra:
     password = None
     def __init__(self):
         if NinnatiCharithra.credential is None:
-            # NinnatiCharithra.credential = ManagedIdentityCredential(client_id="b0b16c58-d25f-4878-8f38-eb21f62a6321")
-            NinnatiCharithra.credential = DefaultAzureCredential()
+            NinnatiCharithra.credential = ManagedIdentityCredential(client_id="b0b16c58-d25f-4878-8f38-eb21f62a6321")
+            # NinnatiCharithra.credential = DefaultAzureCredential()
 
         if NinnatiCharithra.client is None:
             NinnatiCharithra.client = SecretClient(vault_url="https://bondha-keyvault.vault.azure.net/",
