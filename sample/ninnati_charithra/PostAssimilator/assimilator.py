@@ -70,5 +70,5 @@ class Assimilator:
             disclaimer_string = "   \n(_Please upvote this comment if you find this information useful. Also, respond with a comment and tag the author if you have any feedback._)"
             body += disclaimer_string + "   \n^(made by) [^(u/insginificant)](https://www.reddit.com/user/insginificant) ^(|) " \
                                         "[^(About me)](https://www.reddit.com/r/nee_charithra_bot/comments/xp8nw4/introduction/)"
-            print(body)
-            # latest_automoderator_submission.reply(body=body)
+            # print(body)
+            latest_automoderator_submission.reply(body=body)
