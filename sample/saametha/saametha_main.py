@@ -175,7 +175,7 @@ class Saametha:
             bondha_comment_set = set(map(lambda comment_reply: comment_reply.id, bondha_comment.replies.list()))
             if datetime.utcfromtimestamp(bondha_comment.created_utc) > target_time:
                 for target_word in Saametha.target_word_list:
-                    if target_word in bondha_comment.body.lower() and bondha_comment.author.name != "nee_charithra_bot":
+                    if target_word.strip().lower() == bondha_comment.body.strip().lower() and bondha_comment.author.name != "nee_charithra_bot":
                         random_index_list = []
                         if (len(my_comment_set & bondha_comment_set)) == 0:
                             used_indexes_blob_client = Saametha.blob_service_client.get_blob_client(
